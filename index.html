@@ -1,3 +1,5 @@
+Вот исправленный HTML-документ, где все записи расположены в хронологическом порядке — от самой ранней (сентябрь 2025) к самой поздней (апрель 2026).
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -26,7 +28,6 @@
       line-height: 1.5;
     }
 
-    /* главный контейнер — карточка с тенью */
     .diary-container {
       max-width: 1000px;
       margin: 0 auto;
@@ -38,7 +39,6 @@
       transition: all 0.2s ease;
     }
 
-    /* эпиграф / главная цитата */
     .hero-quote {
       font-family: "Pudelinka", 'Georgia', cursive;
       font-size: 1.7rem;
@@ -69,7 +69,6 @@
       vertical-align: top;
     }
 
-    /* стиль для записей (каждый блок) */
     .entry {
       background: #ffffff;
       border-radius: 1.5rem;
@@ -178,20 +177,6 @@
       background: linear-gradient(90deg, #f0dbbc, #f9e3c0, #f0dbbc);
     }
 
-    .file-badge {
-      background: #f7ede1;
-      border-radius: 30px;
-      padding: 0.2rem 0.7rem;
-      font-size: 0.85rem;
-      display: inline-block;
-      margin-right: 6px;
-    }
-
-    .entry p:first-of-type {
-      margin-top: 0;
-    }
-
-    /* специальные метки и иконки */
     .badge-ml {
       background: #e7dcc8;
       color: #8b5a2b;
@@ -212,7 +197,6 @@
       padding-top: 1.8rem;
     }
 
-    /* адаптивность */
     @media (max-width: 720px) {
       body {
         padding: 1rem;
@@ -230,47 +214,26 @@
         font-size: 1.2rem;
       }
     }
-
-    /* кнопка-ссылка, как уютный акцент */
-    .button-link {
-      display: inline-block;
-      background: #f3e2cf;
-      border-radius: 60px;
-      padding: 0.2rem 1rem;
-      margin: 0.2rem 0;
-      transition: 0.2s;
-    }
-    .button-link:hover {
-      background: #ebd2b6;
-      border-bottom: none;
-    }
   </style>
 </head>
 <body>
 <div class="diary-container">
-  <!-- обновлённая главная цитата с красивым стилем -->
   <div class="hero-quote">Путешествие в тысячу миль начинается с одного шага <span style="font-family: monospace;">(Лао Цзы)</span></div>
 
-  <!-- ========= НОВАЯ ЗАПИСЬ: 22 апреля 2026 ========= -->
+  <!-- ========= ЗАПИСИ В ХРОНОЛОГИЧЕСКОМ ПОРЯДКЕ (от старых к новым) ========= -->
+
+  <!-- 1 сентября 2025 -->
   <div class="entry">
-    <h2>📅 22 апреля, 2026</h2>
-    <h3>📊 Новая таблица данных</h3>
-    <p>Загрузила новую таблицу с данными для анализа:</p>
-    <p>
-      📥 <a href="Новая таблица 1.xlsx" download title="Скачать таблицу Excel">
-        Скачать таблицу (Excel)
-      </a>
-    </p>
-    <p><em>📄 Файл содержит актуальные данные для дальнейшей работы.</em></p>
+    <h2>📚 1 сентября, 2025</h2>
+    <blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
+    <p>🌐 Оставляю в прошлом скучную локальную файловую систему ради Всемирной паутины.</p>
+    <p><span class="badge-ml">✨ иконки:</span> <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки от Freepik — Flaticon">Freepik / Flaticon</a></p>
   </div>
 
-  <!-- 13 декабря 2025 -->
+  <!-- 15 октября 2025 -->
   <div class="entry">
-    <h2>📅 13 декабря, 2025</h2>
-    <p>🎵 Записала колядку:  
-      🎥 <a href="video/kolyadka2026.mp4" title="Видео с колядкой">видео</a> &nbsp;|&nbsp;
-      📄 <a href="docs/kolyadka_text_2026.docx" title="Текст колядки в формате DOCX">текст DOCX</a>
-    </p>
+    <h2>🍂 15 октября, 2025</h2>
+    <p>🧩 Я сделала Новогодние кроссворды для сайта <a href="https://justmargarret.github.io/just-yourmargarret2/" title="Блог моего друга">«Сайт моего друга»</a>.</p>
   </div>
 
   <!-- 1 декабря 2025 -->
@@ -282,18 +245,13 @@
     </p>
   </div>
 
-  <!-- 15 октября 2025 -->
+  <!-- 13 декабря 2025 -->
   <div class="entry">
-    <h2>🍂 15 октября, 2025</h2>
-    <p>🧩 Я сделала Новогодние кроссворды для сайта <a href="https://justmargarret.github.io/just-yourmargarret2/" title="Блог моего друга">«Сайт моего друга»</a>.</p>
-  </div>
-
-  <!-- 1 сентября 2025 -->
-  <div class="entry">
-    <h2>📚 1 сентября, 2025</h2>
-    <blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
-    <p>🌐 Оставляю в прошлом скучную локальную файловую систему ради Всемирной паутины.</p>
-    <p><span class="badge-ml">✨ иконки:</span> <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки от Freepik — Flaticon">Freepik / Flaticon</a></p>
+    <h2>📅 13 декабря, 2025</h2>
+    <p>🎵 Записала колядку:  
+      🎥 <a href="video/kolyadka2026.mp4" title="Видео с колядкой">видео</a> &nbsp;|&nbsp;
+      📄 <a href="docs/kolyadka_text_2026.docx" title="Текст колядки в формате DOCX">текст DOCX</a>
+    </p>
   </div>
 
   <!-- 20 декабря 2025 -->
@@ -309,7 +267,7 @@
     <p>📧 <a href="mailto:titov2041@gmail.com">Напишите мне</a></p>
   </div>
 
-  <!-- 19 января 2026: шифры -->
+  <!-- 19 января 2026 -->
   <div class="entry">
     <h2>🔐 19 января, 2026</h2>
     <h3>Решение шифров Цезаря</h3>
@@ -330,7 +288,7 @@
     </ul>
   </div>
 
-  <!-- 17 февраля 2026: модель зрения -->
+  <!-- 17 февраля 2026 -->
   <div class="entry">
     <h2>🖼️ 17 февраля, 2026</h2>
     <h3>Ответ модели компьютерного зрения</h3>
@@ -344,7 +302,7 @@
     <p><em>✅ Отлично: акустическая гитара с вероятностью 98.96%.</em></p>
   </div>
 
-  <!-- 21 февраля 2026: FAQ бот -->
+  <!-- 21 февраля 2026 -->
   <div class="entry">
     <h2>🤖 21 февраля, 2026</h2>
     <h3>Ответ модели чат-бота (FAQ)</h3>
@@ -353,7 +311,7 @@
     <blockquote>Ответ бот-FAQ: Наш стандартный срок доставки — 3–5 рабочих дней.</blockquote>
   </div>
 
-  <!-- 16 марта 2026: линейная регрессия -->
+  <!-- 16 марта 2026 -->
   <div class="entry">
     <h2>📐 16 марта, 2026</h2>
     <h3>Линейная регрессия: прогноз точности анализа</h3>
@@ -367,7 +325,7 @@
     <p><span class="badge-ml">🐍 Python | scikit-learn | matplotlib</span></p>
   </div>
 
-  <!-- 23 марта 2026: модели кредит/КАСКО -->
+  <!-- 23 марта 2026 -->
   <div class="entry">
     <h2>🏦 23 марта, 2026</h2>
     <h3>Точность моделей машинного обучения</h3>
@@ -380,7 +338,7 @@
        <a href="models/kasko_model.pkl" download>Скачать модель КАСКО</a></p>
   </div>
 
-  <!-- 30 марта 2026: эксперимент + нейросеть -->
+  <!-- 30 марта 2026 -->
   <div class="entry">
     <h2>📊 30 марта, 2026</h2>
     <h3>Эксперимент: новый признак в регрессии</h3>
@@ -395,6 +353,19 @@
     <blockquote>Нейросеть не интерпретируема — это важное замечание о природе «чёрных ящиков».</blockquote>
   </div>
 
+  <!-- 22 апреля 2026 (САМАЯ СВЕЖАЯ ЗАПИСЬ) -->
+  <div class="entry">
+    <h2>📅 22 апреля, 2026</h2>
+    <h3>📊 Новая таблица данных</h3>
+    <p>Загрузила новую таблицу с данными для анализа:</p>
+    <p>
+      📥 <a href="Новая таблица 1.xlsx" download title="Скачать таблицу Excel">
+        Скачать таблицу (Excel)
+      </a>
+    </p>
+    <p><em>📄 Файл содержит актуальные данные для дальнейшей работы.</em></p>
+  </div>
+
   <footer>
     🌟 Дневник исследований · Все записи подлинны · Вдохновлено машинным обучением и творчеством<br>
     🕸️ <a href="mailto:titov2041@gmail.com">titov2041@gmail.com</a> · 2025–2026
@@ -402,3 +373,4 @@
 </div>
 </body>
 </html>
+```
