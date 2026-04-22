@@ -2,185 +2,389 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Моя страница</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Моя страница | Дневник исследований</title>
+  <style>
+    @font-face {
+      font-family: "Pudelinka";
+      src: url("Fonts/pudelinka.ttf") format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f9efdf 0%, #f3e5cf 100%);
+      font-family: 'Segoe UI', 'Roboto', 'Georgia', serif, sans-serif;
+      color: #2c2418;
+      padding: 2rem 1.5rem;
+      line-height: 1.5;
+    }
+
+    /* главный контейнер — карточка с тенью */
+    .diary-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: rgba(255, 253, 245, 0.96);
+      border-radius: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.05);
+      padding: 2rem 2rem 3rem;
+      border: 1px solid #f0e2ce;
+      transition: all 0.2s ease;
+    }
+
+    /* эпиграф / главная цитата */
+    .hero-quote {
+      font-family: "Pudelinka", 'Georgia', cursive;
+      font-size: 1.7rem;
+      text-align: center;
+      color: #b45f2b;
+      background: #fff6ea;
+      padding: 1.5rem 1rem;
+      border-radius: 3rem;
+      margin-bottom: 2.5rem;
+      border-left: none;
+      box-shadow: inset 0 0 0 1px #ffe0b5, 0 8px 20px rgba(0,0,0,0.03);
+      font-weight: normal;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-quote::before {
+      content: "❝";
+      font-size: 2.2rem;
+      color: #e7b874;
+      margin-right: 8px;
+    }
+    .hero-quote::after {
+      content: "❞";
+      font-size: 2.2rem;
+      color: #e7b874;
+      margin-left: 8px;
+      vertical-align: top;
+    }
+
+    /* стиль для записей (каждый блок) */
+    .entry {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid #f2e5d4;
+    }
+
+    .entry:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 28px -12px rgba(0, 0, 0, 0.15);
+      border-color: #e9cfaa;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #7a3e1f;
+      border-left: 6px solid #e0a158;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+      margin-top: 0;
+      letter-spacing: -0.2px;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #9b5e2c;
+      margin: 1.2rem 0 0.8rem 0;
+      display: inline-block;
+      border-bottom: 2px dotted #f0cf9a;
+    }
+
+    h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #b4692e;
+      margin: 0.8rem 0 0.4rem;
+    }
+
+    p {
+      margin-bottom: 0.8rem;
+      line-height: 1.5;
+    }
+
+    a {
+      color: #c16f2e;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: 0.2s;
+    }
+
+    a:hover {
+      color: #9b4a1a;
+      border-bottom-color: #e7b06e;
+    }
+
+    ul, ol {
+      margin: 0.5rem 0 1rem 1.8rem;
+    }
+
+    li {
+      margin: 0.3rem 0;
+    }
+
+    blockquote {
+      background: #fef5e9;
+      border-left: 5px solid #e2b87a;
+      padding: 0.8rem 1.2rem;
+      margin: 1rem 0;
+      border-radius: 1rem;
+      font-style: normal;
+      color: #3b2c1c;
+      font-weight: 500;
+    }
+
+    code {
+      background: #f3ede3;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.9em;
+      color: #bc6f2c;
+      border: 1px solid #ecdbba;
+    }
+
+    img {
+      max-width: 48px;
+      vertical-align: middle;
+      margin-right: 12px;
+      transition: transform 0.2s ease;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    hr {
+      margin: 1.2rem 0;
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, #f0dbbc, #f9e3c0, #f0dbbc);
+    }
+
+    .file-badge {
+      background: #f7ede1;
+      border-radius: 30px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .entry p:first-of-type {
+      margin-top: 0;
+    }
+
+    /* специальные метки и иконки */
+    .badge-ml {
+      background: #e7dcc8;
+      color: #8b5a2b;
+      font-size: 0.75rem;
+      border-radius: 40px;
+      padding: 0.2rem 0.8rem;
+      display: inline-block;
+      margin-right: 0.6rem;
+      font-weight: normal;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      color: #a18058;
+      border-top: 1px solid #eedfcb;
+      padding-top: 1.8rem;
+    }
+
+    /* адаптивность */
+    @media (max-width: 720px) {
+      body {
+        padding: 1rem;
+      }
+      .diary-container {
+        padding: 1.2rem;
+      }
+      .entry {
+        padding: 1rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      .hero-quote {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* кнопка-ссылка, как уютный акцент */
+    .button-link {
+      display: inline-block;
+      background: #f3e2cf;
+      border-radius: 60px;
+      padding: 0.2rem 1rem;
+      margin: 0.2rem 0;
+      transition: 0.2s;
+    }
+    .button-link:hover {
+      background: #ebd2b6;
+      border-bottom: none;
+    }
+  </style>
 </head>
 <body>
-  <blockquote class="q">Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
+<div class="diary-container">
+  <!-- обновлённая главная цитата с красивым стилем -->
+  <div class="hero-quote">Путешествие в тысячу миль начинается с одного шага <span style="font-family: monospace;">(Лао Цзы)</span></div>
 
-  <h2>13 декабря, 2025</h2>
-  <p>
-    Записала колядку:  
-    🎥 <a href="video/kolyadka2026.mp4" title="Видео с колядкой">видео</a>,  
-    📄 <a href="docs/kolyadka_text_2026.docx" title="Текст колядки в формате DOCX">текст</a>.
-  </p>
+  <!-- 13 декабря 2025 -->
+  <div class="entry">
+    <h2>📅 13 декабря, 2025</h2>
+    <p>🎵 Записала колядку:  
+      🎥 <a href="video/kolyadka2026.mp4" title="Видео с колядкой">видео</a> &nbsp;|&nbsp;
+      📄 <a href="docs/kolyadka_text_2026.docx" title="Текст колядки в формате DOCX">текст DOCX</a>
+    </p>
+  </div>
 
-  <h2>1 декабря, 2025</h2>
-  <img src="Icons/free-icon-new-year-balloons-19034402(1).png" alt="Новый год">
-  <p>
-    Поздравление с Наступающим 2026 годом:  
-    📄 <a href="Congratulations2026.html" title="Читать онлайн">читать онлайн</a> или  
-    📎 <a href="kolyadka.odt" title="Скачать документ ODT">скачать как .odt</a>.
-  </p>
+  <!-- 1 декабря 2025 -->
+  <div class="entry">
+    <h2>🎄 1 декабря, 2025</h2>
+    <p><img src="Icons/free-icon-new-year-balloons-19034402(1).png" alt="Новый год" style="width:42px;"> Поздравление с Наступающим 2026 годом:  
+      📖 <a href="Congratulations2026.html" title="Читать онлайн">читать онлайн</a>  или  
+      📎 <a href="kolyadka.odt" title="Скачать документ ODT">скачать .odt</a>
+    </p>
+  </div>
 
-  <h2>15 октября, 2025</h2>
-  <p>
-    Я сделала Новогодние кроссворды для сайта <a href="https://justmargarret.github.io/just-yourmargarret2/" title="Блог моего друга">Сайт моего друга</a>.
-  </p>
+  <!-- 15 октября 2025 -->
+  <div class="entry">
+    <h2>🍂 15 октября, 2025</h2>
+    <p>🧩 Я сделала Новогодние кроссворды для сайта <a href="https://justmargarret.github.io/just-yourmargarret2/" title="Блог моего друга">«Сайт моего друга»</a>.</p>
+  </div>
 
-  <h2>1 сентября, 2025</h2>
-  <blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
-  <p>
-    Оставляю в прошлом скучную неинтересную локальную файловую систему ради Всемирной паутины.
-  </p>
+  <!-- 1 сентября 2025 -->
+  <div class="entry">
+    <h2>📚 1 сентября, 2025</h2>
+    <blockquote>Путешествие в тысячу миль начинается с одного шага (Лао Цзы)</blockquote>
+    <p>🌐 Оставляю в прошлом скучную локальную файловую систему ради Всемирной паутины.</p>
+    <p><span class="badge-ml">✨ иконки:</span> <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки от Freepik — Flaticon">Freepik / Flaticon</a></p>
+  </div>
 
-  <p>Иконки: 
-    <a href="https://www.flaticon.com/ru/free-icons/2026" title="2026 иконки">2026 иконки от Freepik — Flaticon</a>
-  </p>
+  <!-- 20 декабря 2025 -->
+  <div class="entry">
+    <h2>🎓 20 декабря, 2025</h2>
+    <p>куратор-2</p>
+  </div>
 
-  <!-- Новая запись -->
-  <h2>20 декабря, 2025</h2>
-  <p>куратор-2</p>
+  <!-- 14 января 2026 -->
+  <div class="entry">
+    <h2>🌐 14 января, 2026</h2>
+    <p>📡 Домен: <code>titov2041-beep.github.io</code></p>
+    <p>📧 <a href="mailto:titov2041@gmail.com">Напишите мне</a></p>
+  </div>
+
+  <!-- 19 января 2026: шифры -->
+  <div class="entry">
+    <h2>🔐 19 января, 2026</h2>
+    <h3>Решение шифров Цезаря</h3>
+    <ul>
+      <li><strong>Определение ключей:</strong>
+        <ul>
+          <li>АПЕЛЬСИН → САЦЬНВЩЮ → ключ: <code>+18</code></li>
+          <li>АБРИКОС → ЫЬЛГЕЙМ → ключ: <code>-4</code></li>
+        </ul>
+      </li>
+      <li><strong>Расшифровка:</strong>
+        <ul>
+          <li>ФХНЗКЧ → <strong>ПРИВЕТ</strong> (ключ = 5)</li>
+          <li>ЦЩЕБФ → <strong>ВЕСНА</strong> (ключ = 20)</li>
+        </ul>
+      </li>
+      <li><strong>Шифрование фамилии «Халимов» с ключом 10:</strong> <code>чкфсчэл</code></li>
+    </ul>
+  </div>
+
+  <!-- 17 февраля 2026: модель зрения -->
+  <div class="entry">
+    <h2>🖼️ 17 февраля, 2026</h2>
+    <h3>Ответ модели компьютерного зрения</h3>
+    <h4>👟 Тест 1: Изображение кроссовок (boots.jpeg)</h4>
+    <ul><li><strong>running shoe: 99.45%</strong> ✅</li><li>shoe store: 0.27%</li><li>clogs: 0.15%</li></ul>
+    <h4>🐕 Тест 2: Изображение собаки</h4>
+    <ul><li><strong>Beagle: 40.91%</strong></li><li>English foxhound: 30.51%</li><li>Treeing Walker Coonhound: 24.76%</li></ul>
+    <p>✅ Модель верно определила породу (бигль).</p>
+    <h4>🎸 Тест 3: Изображение гитары</h4>
+    <ul><li><strong>acoustic guitar: 98.96%</strong></li><li>electric guitar: 0.87%</li><li>plectrum: 0.11%</li></ul>
+    <p><em>✅ Отлично: акустическая гитара с вероятностью 98.96%.</em></p>
+  </div>
+
+  <!-- 21 февраля 2026: FAQ бот -->
+  <div class="entry">
+    <h2>🤖 21 февраля, 2026</h2>
+    <h3>Ответ модели чат-бота (FAQ)</h3>
+    <p><strong>Вопрос:</strong> Сколько ждать мой заказ?</p>
+    <p><strong>Найден FAQ:</strong> «Как быстро доставляется заказ?» <em>(sim=0.706)</em></p>
+    <blockquote>Ответ бот-FAQ: Наш стандартный срок доставки — 3–5 рабочих дней.</blockquote>
+  </div>
+
+  <!-- 16 марта 2026: линейная регрессия -->
+  <div class="entry">
+    <h2>📐 16 марта, 2026</h2>
+    <h3>Линейная регрессия: прогноз точности анализа</h3>
+    <p><strong>Уравнение:</strong> <code>Точность = 4.56 × Часы + 53.63</code></p>
+    <ul>
+      <li>Коэффициент: <code>4.5554</code></li>
+      <li>Свободный член: <code>53.625</code></li>
+      <li>Обучающая выборка: 16 записей, тест: 4 записи</li>
+    </ul>
+    <p>📈 <strong>Пример:</strong> студент занимался 5 часов → прогноз баллов: <strong>50.23</strong></p>
+    <p><span class="badge-ml">🐍 Python | scikit-learn | matplotlib</span></p>
+  </div>
+
+  <!-- 23 марта 2026: модели кредит/КАСКО -->
+  <div class="entry">
+    <h2>🏦 23 марта, 2026</h2>
+    <h3>Точность моделей машинного обучения</h3>
+    <h4>Кредитная модель (Decision Tree)</h4>
+    <ul><li>Признаки: возраст, зарплата, пол</li><li>Точность: <code>69.00%</code></li></ul>
+    <h4>Модель КАСКО (Decision Tree)</h4>
+    <ul><li>Признаки: возраст, стаж вождения, число ДТП, пол</li><li>Точность: <code>100.00%</code> ⚠️ возможное переобучение</li></ul>
+    <p>💡 <em>Модель КАСКО показывает идеальную точность — стоит проверить данные. Кредитную модель можно улучшить гиперпараметрами.</em></p>
+    <p>📥 <a href="models/credit_model.pkl" download>Скачать модель кредита</a> | 
+       <a href="models/kasko_model.pkl" download>Скачать модель КАСКО</a></p>
+  </div>
+
+  <!-- 30 марта 2026: эксперимент + нейросеть -->
+  <div class="entry">
+    <h2>📊 30 марта, 2026</h2>
+    <h3>Эксперимент: новый признак в регрессии</h3>
+    <p>Добавлен признак <strong>"количество выполненных домашних заданий"</strong> → улучшение качества модели.</p>
+    <ul>
+      <li><strong>MSE (обучение):</strong> <code>0.004438746</code></li>
+      <li><strong>MSE (тест):</strong> <code>0.003977678</code> ✅ снижение ошибки</li>
+    </ul>
+    <p><em>Вывод: Новый признак повысил способность модели к обобщению.</em></p>
+    <hr>
+    <h3>🧠 Нейронная сеть</h3>
+    <blockquote>Нейросеть не интерпретируема — это важное замечание о природе «чёрных ящиков».</blockquote>
+  </div>
+
+  <footer>
+    🌟 Дневник исследований · Все записи подлинны · Вдохновлено машинным обучением и творчеством<br>
+    🕸️ <a href="mailto:titov2041@gmail.com">titov2041@gmail.com</a> · 2025–2026
+  </footer>
+</div>
 </body>
 </html>
-<body>
-   <h2>14 января, 2026</h2>
-  </p> Домен- titov2041-beep.github.io. </p>
-  </p><a href="mailto:titov2041@gmail.com">Напишите мне</a> </p>
-  <h2>19 января, 2026</h2>
-<p>
-  <strong>Решение шифров Цезаря:</strong>
-</p>
-<ul>
-  <li>
-    <strong>Определение ключей шифра Цезаря:</strong>
-    <ul>
-      <li>а. АПЕЛЬСИН → САЦЬНВЩЮ → Ключ: <code>+18</code></li>
-      <li>б. АБРИКОС → ЫЬЛГЕЙМ → Ключ: <code>-4</code></li>
-    </ul>
-  </li>
-  <li>
-    <strong>Расшифровка сообщений:</strong>
-    <ul>
-      <li>а. ФХНЗКЧ → <strong>ПРИВЕТ</strong> (ключ = 5)</li>
-      <li>б. ЦЩЕБФ → <strong>ВЕСНА</strong> (ключ = 20)</li>
-    </ul>
-  </li>
-  <li>
-    <strong>Шифрование фамилии «Халимов» с ключом 10:</strong> чкфсчэл
-  </li>
-</ul>
-<p>
-  <h2>17 февраля, 2026</h2>
-  <h3>Ответ модели компьютерного зрения</h3>
-  
-  <h4>📷 Тест 1: Изображение кроссовок (boots.jpeg)</h4>
-  <p><strong>Топ-3 предсказания модели:</strong></p>
-  <ul>
-    <li><strong>running shoe: 99.45%</strong></li>
-    <li>shoe store: 0.27%</li>
-    <li>clogs: 0.15%</li>
-  </ul>
-  <p><em>✅ Модель справилась с классификацией — правильно определила обувь!</em></p>
-  <h4>📷 Тест 2: Изображение собаки</h4>
-<p><strong>Топ-3 предсказания модели:</strong></p>
-<ul>
-  <li><strong>Beagle: 40.91%</strong></li>
-  <li>English foxhound: 30.51%</li>
-  <li>Treeing Walker Coonhound: 24.76%</li>
-</ul>
-<p><em>✅ Модель справилась с классификацией — правильно определила породу собаки (бигль)!</em></p>
-  <h4>📷 Тест 3: Изображение гитары</h4>
-<p><strong>Топ-3 предсказания модели:</strong></p>
-<ul>
-  <li><strong>acoustic guitar: 98.96%</strong></li>
-  <li>electric guitar: 0.87%</li>
-  <li>plectrum: 0.11%</li>
-</ul>
-<p><em>✅ Модель отлично справилась с классификацией — правильно определила акустическую гитару с вероятностью 98.96%!</em></p>
-<h2>21 февраля, 2026</h2>
-<h3>🤖 Ответ модели чат-бота (FAQ)</h3>
-<p><strong>Вопрос пользователя:</strong> Сколько ждать мой заказ?</p>
-<p><strong>Найден FAQ-вопрос:</strong> Как быстро доставляется заказ? <em>(sim=0.706)</em></p>
-<blockquote>
-  <p><strong>Ответ бот-FAQ:</strong> Наш стандартный срок доставки — 3–5 рабочих дней.</p>
-</blockquote>
- <h2>16 марта, 2026</h2>
-<h3>📊 Модель линейной регрессии: Прогнозирование точности анализа</h3>
-
-<h4>🎯 Цель:</h4>
-<p>Построить модель, которая прогнозирует точность анализа по количеству часов практики.</p>
-
-<h4>📈 Параметры модели:</h4>
-<ul>
-  <li><strong>Коэффициент (наклон):</strong> <code>4.55543988</code></li>
-  <li><strong>Свободный член:</strong> <code>53.62545549193129</code></li>
-  <li><strong>Размер обучающей выборки:</strong> 16 записей</li>
-  <li><strong>Размер тестовой выборки:</strong> 4 записи</li>
-</ul>
-
-<h4>📐 Уравнение модели:</h4>
-<blockquote>
-  <p><strong>Точность = 4.56 × Часы + 53.63</strong></p>
-</blockquote>
-<p><em>Это означает, что каждый дополнительный час практики увеличивает точность примерно на 4.56%.</em></p>
-
-<h4>💡 Пример прогноза:</h4>
-<blockquote>
-  <p><strong>Студент занимался 5 часов</strong><br>
-  → <strong>Прогноз баллов: 50.23</strong></p>
-</blockquote>
-<p><em>Модель предсказала результат на основе уравнения регрессии.</em></p>
-
-<h4>🔧 Используемые технологии:</h4>
-<p>Python, pandas, scikit-learn (LinearRegression), matplotlib</p>
-    <!-- Новая запись: 23 марта, 2026 -->
-  <h2>23 марта, 2026</h2>
-  <h3>📊 Точность моделей машинного обучения</h3>
-  
-  <h4>🏦 Модель выдачи кредита</h4>
-  <ul>
-    <li><strong>Алгоритм:</strong> Дерево решений (Decision Tree)</li>
-    <li><strong>Признаки:</strong> возраст, зарплата, пол</li>
-    <li><strong>Точность на тестовой выборке:</strong> <code>69.00%</code></li>
-  </ul>
-  
-  <h4>🚗 Модель страхования КАСКО</h4>
-  <ul>
-    <li><strong>Алгоритм:</strong> Дерево решений (Decision Tree)</li>
-    <li><strong>Признаки:</strong> возраст, стаж вождения, число ДТП, пол</li>
-    <li><strong>Точность на тестовой выборке:</strong> <code>100.00%</code></li>
-  </ul>
-  
-  <p><em>💡 Модель КАСКО показала идеальную точность (100%), что может указывать на переобучение или слишком простую логику генерации данных.</em></p>
-  <p><em>⚠️ Точность модели кредита (69%) требует улучшения — рекомендуется настроить гиперпараметры или добавить больше признаков.</em></p>
-  
-  <p>
-    📥 <a href="models/credit_model.pkl" download>Скачать модель кредита</a> | 
-    📥 <a href="models/kasko_model.pkl" download>Скачать модель КАСКО</a>
-  </p>
-    
-  <!-- НОВАЯ ЗАПИСЬ ОТ СЕГОДНЯШНЕГО ЧИСЛА -->
-  <h2>30 марта, 2026</h2>
-  
-  <!-- Часть 1: Эксперимент с признаком -->
-  <h3>📈 Эксперимент: Добавление нового признака в модель регрессии</h3>
-  <p>Для улучшения качества модели прогнозирования оценок студентов был добавлен новый числовой признак — <strong>"количество выполненных домашних заданий"</strong>.</p>
-  
-  <h4>📊 Результаты эксперимента:</h4>
-  <p>После переобучения модели с учетом нового признака, значения средней квадратичной ошибки (MSE) изменились следующим образом:</p>
-  <ul>
-    <li><strong>Ошибка на обучающей выборке (MSE):</strong> <code>0.004438746</code></li>
-    <li><strong>Ошибка на тестовой выборке (MSE):</strong> <code>0.003977678</code></li>
-  </ul>
-  <p><em>💡 Вывод: Добавление нового признака позволило немного снизить ошибку на тестовой выборке, что говорит об улучшении способности модели делать прогнозы на новых данных.</em></p>
-
-  <hr style="margin: 25px 0; border: none; border-top: 1px dashed #ccc;">
-
-  <!-- Часть 2: Нейросеть -->
-  <h3>🧠 Нейронная сеть</h3>
-  <p>Нейросеть не интерпретируема.</p>
-
-</body>
-</html>
-
